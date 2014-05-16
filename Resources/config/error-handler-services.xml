@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="error_handler.class">prgTW\ErrorHandlerBundle\ErrorHandler</parameter>
+		<parameter key="error_handler.handler_bugsnag.class">prgTW\ErrorHandler\Handler\BugsnagHandler</parameter>
+		<parameter key="error_handler.listener.exception.class">prgTW\ErrorHandlerBundle\EventListener\ExceptionListener</parameter>
+		<parameter key="error_handler.listener.shutdown.class">prgTW\ErrorHandlerBundle\EventListener\ShutdownListener</parameter>
+		<parameter key="error_handler.listener.terminate.class">prgTW\ErrorHandlerBundle\EventListener\TerminateListener</parameter>
+	</parameters>
+
+	<services>
+		<service id="error_handler.abstract.handler" abstract="true" />
+
+		<service id="error_handler" class="%error_handler.class%" lazy="true" />
+
+		<service id="error_handler.listener.exception" class="%error_handler.listener.exception.class%" lazy="true">
+			<argument type="service" id="error_handler"/>
+			<tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"/>
+		</service>
+
+		<service id="error_handler.listener.shutdown" class="%error_handler.listener.shutdown.class%" lazy="true">
+			<argument type="service" id="error_handler"/>
+			<tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/> <!--mandatory-->
+		</service>
+
+		<service id="error_handler.listener.terminate" class="%error_handler.listener.terminate.class%" lazy="true">
+			<tag name="kernel.event_listener" event="kernel.terminate" method="onKernelTerminate"/>
+		</service>
+	</services>
+</container>
