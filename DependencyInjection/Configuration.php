@@ -56,7 +56,8 @@ class Configuration implements ConfigurationInterface
 
 	protected function getHandlerNodes()
 	{
-		$root = (new TreeBuilder())->root('handlers');
+		$treeBuilder = new TreeBuilder();
+		$root = $treeBuilder->root('handlers');
 
 		$this->appendBugsnagConfiguration($root);
 

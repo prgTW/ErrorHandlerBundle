@@ -1,7 +1,6 @@
 {
 	"name": "prgtw/error-handler-bundle",
 	"description": "ErrorHandlerBundle",
-
 	"keywords": ["symfony", "error", "exception", "handler"],
 	"license": "MIT",
 	"authors": [
