@@ -12,8 +12,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class TestCommand extends ContainerAwareCommand
 {
-	public $count;
-
 	/** {@inheritdoc} */
 	protected function configure()
 	{
@@ -28,13 +26,10 @@ class TestCommand extends ContainerAwareCommand
 	{
 		$count    = $input->getOption('count');
 		$digits   = floor(log10($count) + 1);
-		$projects = $input->getArgument('project');
-
-		/** @var ErrorHandler $errorHandler */
 		$errorHandler = $this->getContainer()->get('error_handler');
 
 		$output->writeln('<fg=cyan>Creating errors:</fg=cyan>');
-		foreach ($projects as $project)
+		foreach ($input->getArgument('project') as $project)
 		{
 			$output->writeln(sprintf('- <comment>%s</comment>', $project));
 			for ($i = 1; $i <= $count; ++$i)
