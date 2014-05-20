@@ -13,7 +13,9 @@ class ProcessorsPass implements CompilerPassInterface
 	{
 		if (!$container->hasDefinition('error_handler'))
 		{
+			// @codeCoverageIgnoreStart
 			return;
+			// @codeCoverageIgnoreEnd
 		}
 
 		$interface      = 'prgTW\\ErrorHandler\\Processor\\ProcessorInterface';
