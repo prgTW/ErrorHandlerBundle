@@ -44,7 +44,7 @@ class ProcessorsPassTest extends \PHPUnit_Framework_TestCase
 		{
 			return $call[0] = 'addProcessor';
 		});
-		$this->assertCount(1, $addProcessorCalls);
+		$this->assertCount(2, $addProcessorCalls);
 	}
 
 	/**
@@ -68,6 +68,8 @@ class ProcessorsPassTest extends \PHPUnit_Framework_TestCase
 		$this->extension = new ErrorHandlerExtension();
 		$this->bundle    = new ErrorHandlerBundle();
 
+		$this->container->setParameter('kernel.environment', 'test');
+		$this->container->setParameter('kernel.root_dir', sys_get_temp_dir());
 		$this->container->registerExtension($this->extension);
 		$this->container->loadFromExtension($this->extension->getAlias());
 		$this->bundle->build($this->container);

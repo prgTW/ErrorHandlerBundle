@@ -37,6 +37,9 @@ class ErrorHandlerExtension extends Extension
 			$container->removeDefinition('error_handler.listener.terminate');
 		}
 
+		$container->setParameter('error_handler.stage', $config['stage']);
+		$container->setParameter('error_handler.root_dir', $config['root_dir']);
+
 		$errorHandler = $container->getDefinition('error_handler');
 
 		foreach ($config['projects'] as $projectName => $projectConfiguration)

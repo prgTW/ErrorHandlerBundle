@@ -22,6 +22,14 @@ class Configuration implements ConfigurationInterface
 		$rootNode
 			->fixXmlConfig('project')
 			->children()
+				->scalarNode('stage')
+					->defaultValue('%kernel.environment%')
+				->end()
+
+				->scalarNode('root_dir')
+					->defaultValue('%kernel.root_dir%')
+				->end()
+
 				->arrayNode('exception_listener')
 					->canBeDisabled()
 				->end()
