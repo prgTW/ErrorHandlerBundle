@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a2edd315369637759abdcf8ebe5a7cea",
+    "hash": "e51399f6191f8430694a920549a17819",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -466,12 +466,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/prgTW/error-handler.git",
-                "reference": "daa55414572608cca8e5e6f80177dcc972abab4c"
+                "reference": "3e6494fe97ec7d28b187a1eb4c58104387e96eb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/daa55414572608cca8e5e6f80177dcc972abab4c",
-                "reference": "daa55414572608cca8e5e6f80177dcc972abab4c",
+                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/3e6494fe97ec7d28b187a1eb4c58104387e96eb3",
+                "reference": "3e6494fe97ec7d28b187a1eb4c58104387e96eb3",
                 "shasum": ""
             },
             "require": {
@@ -479,7 +479,7 @@
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7"
+                "phpunit/phpunit": "~4.0"
             },
             "type": "library",
             "autoload": {
@@ -505,7 +505,7 @@
                 "handler",
                 "php"
             ],
-            "time": "2014-05-20 12:29:02"
+            "time": "2014-05-20 13:32:29"
         },
         {
             "name": "psr/log",
