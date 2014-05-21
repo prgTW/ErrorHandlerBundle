@@ -38,4 +38,10 @@ class ErrorHandler implements HandlerInterface
 		$this->errorHandler->handleException($exception, $metadata);
 	}
 
+	/** {@inheritdoc} */
+	public function handleEvent($eventName, $message, Metadata $metadata = null)
+	{
+		$this->errorHandler->handleEvent($eventName, $message, $metadata);
+	}
+
 }

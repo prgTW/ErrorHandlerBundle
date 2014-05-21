@@ -25,7 +25,7 @@ class BasicDataProcessor implements ProcessorInterface
 	}
 
 	/** {@inheritdoc} */
-	public function process(Metadata $metadata, \Exception $exception)
+	public function process(Metadata $metadata, \Exception $exception = null)
 	{
 		$metadata->setStage($this->environment);
 		$metadata->setTag('symfony_version', Kernel::VERSION);

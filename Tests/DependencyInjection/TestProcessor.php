@@ -8,7 +8,7 @@ use prgTW\ErrorHandler\Processor\ProcessorInterface;
 class TestProcessor implements ProcessorInterface
 {
 	/** {@inheritdoc} */
-	public function process(Metadata $metadata, \Exception $exception)
+	public function process(Metadata $metadata, \Exception $exception = null)
 	{
 
 	}
