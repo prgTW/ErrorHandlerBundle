@@ -2,7 +2,8 @@
 
 namespace prgTW\ErrorHandlerBundle\Command;
 
-use prgTW\ErrorHandlerBundle\ErrorHandler;
+use prgTW\ErrorHandler\ErrorHandler;
+use prgTW\ErrorHandler\Metadata\Metadata;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,26 +17,42 @@ class TestCommand extends ContainerAwareCommand
 	protected function configure()
 	{
 		$this->setName('error-handler:test');
-		$this->addArgument('project', InputArgument::OPTIONAL | InputArgument::IS_ARRAY, 'Project name(s)');
+		$this->addArgument('category', InputArgument::OPTIONAL | InputArgument::IS_ARRAY, 'Category name(s)');
 		$this->addOption('count', null, InputOption::VALUE_REQUIRED, 'How many test errors will be created', 1);
-		$this->setDescription('Sends a test error to handlers connected to a given project(s)');
+		$this->addOption('type', null, InputOption::VALUE_REQUIRED, 'error|exception', 'error');
+		$this->setDescription('Sends a test error to handlers connected to a given categories');
 	}
 
 	/** {@inheritdoc} */
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$count    = $input->getOption('count');
-		$digits   = floor(log10($count) + 1);
+		$type = $input->getOption('type');
+		if (!in_array($type, array('error', 'exception')))
+		{
+			throw new \LogicException('Type must be either "error" or "exception"');
+		}
+		$count  = intval($input->getOption('count'));
+		$digits = floor(log10($count) + 1);
+		/** @var ErrorHandler $errorHandler */
 		$errorHandler = $this->getContainer()->get('error_handler');
 
 		$output->writeln('<fg=cyan>Creating errors:</fg=cyan>');
-		foreach ($input->getArgument('project') as $project)
+		foreach ($input->getArgument('category') as $category)
 		{
-			$output->writeln(sprintf('- <comment>%s</comment>', $project));
+			$output->writeln(sprintf('- <comment>%s</comment>', $category));
 			for ($i = 1; $i <= $count; ++$i)
 			{
-				$errorHandler->handleError($project, E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__);
-				$output->writeln(sprintf("  - <comment>[%{$digits}d/%{$digits}d]</comment> %s", $i, $count, !empty($eventId) ? sprintf('<info>eventId: %s</info>', $eventId) : '<error>eventId: empty</error>'));
+				switch ($type)
+				{
+					case 'error':
+						$errorHandler->handleError(E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__, array(), (new Metadata())->setCategories(array($category)));
+						break;
+
+					case 'exception':
+						$errorHandler->handleException(new \Exception(), (new Metadata())->setCategories(array($category)));
+						break;
+				}
+				$output->writeln(sprintf("  - <comment>[%{$digits}d/%{$digits}d]</comment> <info>OK</info>", $i, $count));
 			}
 		}
 

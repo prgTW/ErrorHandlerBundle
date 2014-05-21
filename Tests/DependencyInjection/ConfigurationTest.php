@@ -55,20 +55,20 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
 	 */
-	public function testNoProjectsInConfiguration()
+	public function testNoCategoriesInConfiguration()
 	{
 		$this->extension->load(array(
 			'error_handler' => array(
-				'projects' => array(),
+				'categories' => array(),
 			),
 		), $this->container);
 	}
 
-	public function testDefaultProjectDefined()
+	public function testDefaultCategoryDefined()
 	{
 		$this->extension->load(array(
 			'error_handler' => array(
-				'projects' => array(
+				'categories' => array(
 					'default' => array(),
 				),
 			),
@@ -79,7 +79,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->extension->load(array(
 			'error_handler' => array(
-				'projects' => array(
+				'categories' => array(
 					'default' => array(
 						'handlers' => array(
 							'bugsnag' => array(

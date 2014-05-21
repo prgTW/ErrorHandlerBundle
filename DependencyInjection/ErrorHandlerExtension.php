@@ -42,16 +42,16 @@ class ErrorHandlerExtension extends Extension
 
 		$errorHandler = $container->getDefinition('error_handler');
 
-		foreach ($config['projects'] as $projectName => $projectConfiguration)
+		foreach ($config['categories'] as $categoryName => $categoryConfiguration)
 		{
-			if (empty($projectConfiguration['handlers']))
+			if (empty($categoryConfiguration['handlers']))
 			{
 				continue;
 			}
-			foreach ($projectConfiguration['handlers'] as $handlerName => $handlerConfiguration)
+			foreach ($categoryConfiguration['handlers'] as $handlerName => $handlerConfiguration)
 			{
 				$handlerClass      = $container->getParameter(sprintf('error_handler.handler_%s.class', $handlerName));
-				$handlerId         = sprintf('error_handler.handler.%s.%s', $projectName, $handlerName);
+				$handlerId         = sprintf('error_handler.handler.%s.%s', $categoryName, $handlerName);
 				$handlerDefinition = new DefinitionDecorator('error_handler.abstract.handler');
 				$handlerDefinition->setClass($handlerClass);
 				$handlerDefinition->setPublic(false);
@@ -77,6 +77,7 @@ class ErrorHandlerExtension extends Extension
 				$container->setDefinition($handlerId, $handlerDefinition);
 				$errorHandler->addMethodCall('addHandler', array(
 					new Reference($handlerId),
+					$categoryName == 'default' ? array() : array($categoryName)
 				));
 			}
 		}

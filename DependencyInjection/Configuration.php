@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
 		$rootNode    = $treeBuilder->root('error_handler');
 
 		$rootNode
-			->fixXmlConfig('project')
+			->fixXmlConfig('category', 'categories')
 			->children()
 				->scalarNode('stage')
 					->defaultValue('%kernel.environment%')
@@ -42,8 +42,8 @@ class Configuration implements ConfigurationInterface
 					->canBeDisabled()
 				->end()
 
-				->arrayNode('projects')
-					->useAttributeAsKey('projectName')
+				->arrayNode('categories')
+					->useAttributeAsKey('categoryName')
 					->validate()
 					->ifTrue(function (array $v) {
 						return !array_key_exists('default', $v);
