@@ -35,7 +35,9 @@ class TestCommand extends ContainerAwareCommand
 		$digits = floor(log10($count) + 1);
 		/** @var ErrorHandler $errorHandler */
 		$errorHandler = $this->getContainer()->get('error_handler');
-		$categories   = $input->getArgument('category');
+
+		$metadata = new Metadata();
+		$metadata->setCategories($input->getArgument('category'));
 
 		$output->writeln('<fg=cyan>Creating errors</fg=cyan>');
 		for ($i = 1; $i <= $count; ++$i)
@@ -43,11 +45,11 @@ class TestCommand extends ContainerAwareCommand
 			switch ($type)
 			{
 				case 'error':
-					$errorHandler->handleError(E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__, array(), (new Metadata())->setCategories($categories));
+					$errorHandler->handleError(E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__, array(), $metadata);
 					break;
 
 				case 'exception':
-					$errorHandler->handleException(new \Exception(), (new Metadata())->setCategories($categories));
+					$errorHandler->handleException(new \Exception(), $metadata);
 					break;
 			}
 			$output->writeln(sprintf("<comment>[%{$digits}d/%{$digits}d]</comment> <info>OK</info>", $i, $count));

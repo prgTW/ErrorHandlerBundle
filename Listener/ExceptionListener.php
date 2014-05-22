@@ -38,8 +38,8 @@ class ExceptionListener
 			$culprit = $event->getRequest()->attributes->get('_controller');
 		}
 
-		$metadata = (new Metadata())
-			->setMetadatum('culprit', $culprit);
+		$metadata = new Metadata();
+		$metadata->setMetadatum('culprit', $culprit);
 		$this->errorHandler->handleException($exception, $metadata);
 	}
 
