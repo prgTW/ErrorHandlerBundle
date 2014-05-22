@@ -30,18 +30,6 @@ class Configuration implements ConfigurationInterface
 					->defaultValue('%kernel.root_dir%')
 				->end()
 
-				->arrayNode('exception_listener')
-					->canBeDisabled()
-				->end()
-
-				->arrayNode('shutdown_listener')
-					->canBeDisabled()
-				->end()
-
-				->arrayNode('terminate_listener')
-					->canBeDisabled()
-				->end()
-
 				->arrayNode('categories')
 					->useAttributeAsKey('categoryName')
 					->validate()

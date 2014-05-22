@@ -18,6 +18,7 @@ class ErrorHandler implements HandlerInterface
 	public function __construct(\prgTW\ErrorHandler\ErrorHandler $errorHandler)
 	{
 		$this->errorHandler = $errorHandler;
+		$this->errorHandler->register(false, false, true);
 	}
 
 	/** {@inheritdoc} */

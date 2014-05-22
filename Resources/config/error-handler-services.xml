@@ -10,9 +10,7 @@
 		<parameter key="error_handler.handler_bugsnag.class">prgTW\ErrorHandler\Handler\BugsnagHandler</parameter>
 		<parameter key="error_handler.symfony_processor.class">prgTW\ErrorHandlerBundle\Processor\SymfonyProcessor</parameter>
 		<parameter key="error_handler.environment_processor.class">prgTW\ErrorHandlerBundle\Processor\EnvironmentProcessor</parameter>
-		<parameter key="error_handler.listener.exception.class">prgTW\ErrorHandlerBundle\EventListener\ExceptionListener</parameter>
-		<parameter key="error_handler.listener.shutdown.class">prgTW\ErrorHandlerBundle\EventListener\ShutdownListener</parameter>
-		<parameter key="error_handler.listener.terminate.class">prgTW\ErrorHandlerBundle\EventListener\TerminateListener</parameter>
+		<parameter key="error_handler.exception_listener.class">prgTW\ErrorHandlerBundle\Listener\ExceptionListener</parameter>
 	</parameters>
 
 	<services>
@@ -36,18 +34,10 @@
 		</service>
 
 		<!-- listeners -->
-		<service id="error_handler.listener.exception" class="%error_handler.listener.exception.class%" lazy="true">
+		<service id="error_handler.listener.exception" class="%error_handler.exception_listener.class%" lazy="true">
 			<argument type="service" id="error_handler"/>
 			<tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"/>
-		</service>
-
-		<service id="error_handler.listener.shutdown" class="%error_handler.listener.shutdown.class%" lazy="true">
-			<argument type="service" id="error_handler"/>
-			<tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/> <!--mandatory-->
-		</service>
-
-		<service id="error_handler.listener.terminate" class="%error_handler.listener.terminate.class%" lazy="true">
-			<tag name="kernel.event_listener" event="kernel.terminate" method="onKernelTerminate"/>
+			<tag name="kernel.event_listener" event="console.exception" method="onConsoleException"/>
 		</service>
 	</services>
 </container>

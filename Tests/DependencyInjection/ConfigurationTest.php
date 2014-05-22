@@ -17,39 +17,14 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 	/** @var ContainerBuilder */
 	protected $container;
 
-	/**
-	 * @dataProvider getConfigForListeners
-	 */
-	public function testListeners($exceptionListener, $shutdownListener, $terminateListener)
+	public function testListeners()
 	{
 		$this->extension->load(array(
 			'error_handler' => array(
-				'exception_listener' => array(
-					'enabled' => $exceptionListener,
-				),
-				'shutdown_listener'  => array(
-					'enabled' => $shutdownListener,
-				),
-				'terminate_listener' => array(
-					'enabled' => $terminateListener,
-				),
 			),
 		), $this->container);
 
-		$this->assertEquals($exceptionListener, $this->container->hasDefinition('error_handler.listener.exception'));
-		$this->assertEquals($shutdownListener, $this->container->hasDefinition('error_handler.listener.shutdown'));
-		$this->assertEquals($terminateListener, $this->container->hasDefinition('error_handler.listener.terminate'));
-	}
-
-	public function getConfigForListeners()
-	{
-		$ret = array();
-		for ($i = 0; $i < 8; ++$i)
-		{
-			$ret[] = array((bool)($i & 4), (bool)($i & 2), (bool)($i & 1));
-		}
-
-		return $ret;
+		$this->assertTrue($this->container->hasDefinition('error_handler.listener.exception'));
 	}
 
 	/**

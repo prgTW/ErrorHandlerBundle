@@ -24,19 +24,6 @@ class ErrorHandlerExtension extends Extension
 		$loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 		$loader->load('error-handler-services.xml');
 
-		if (!$config['shutdown_listener']['enabled'])
-		{
-			$container->removeDefinition('error_handler.listener.shutdown');
-		}
-		if (!$config['exception_listener']['enabled'])
-		{
-			$container->removeDefinition('error_handler.listener.exception');
-		}
-		if (!$config['terminate_listener']['enabled'])
-		{
-			$container->removeDefinition('error_handler.listener.terminate');
-		}
-
 		$container->setParameter('error_handler.stage', $config['stage']);
 		$container->setParameter('error_handler.root_dir', $config['root_dir']);
 
