@@ -28,8 +28,8 @@ class SymfonyProcessor implements ProcessorInterface
 	public function process(Metadata $metadata, \Exception $exception = null)
 	{
 		$metadata->setStage($this->environment);
-		$metadata->setTag('symfony_version', Kernel::VERSION);
-		$metadata->setMetadatum('symfony_version', Kernel::VERSION);
+		$metadata->addTag('symfony_version', Kernel::VERSION);
+		$metadata->addMetadatum('symfony_version', Kernel::VERSION);
 		$metadata->setAppRootDir($this->kernelRootDir);
 	}
 }

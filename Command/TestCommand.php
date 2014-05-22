@@ -37,7 +37,7 @@ class TestCommand extends ContainerAwareCommand
 		$errorHandler = $this->getContainer()->get('error_handler');
 
 		$metadata = new Metadata();
-		$metadata->setCategories($input->getArgument('category'));
+		$metadata->addCategories($input->getArgument('category'));
 
 		$output->writeln('<fg=cyan>Creating errors</fg=cyan>');
 		for ($i = 1; $i <= $count; ++$i)

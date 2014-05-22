@@ -19,6 +19,7 @@ class Configuration implements ConfigurationInterface
 		$treeBuilder = new TreeBuilder();
 		$rootNode    = $treeBuilder->root('error_handler');
 
+		/** @noinspection PhpUndefinedMethodInspection */
 		$rootNode
 			->fixXmlConfig('category', 'categories')
 			->children()

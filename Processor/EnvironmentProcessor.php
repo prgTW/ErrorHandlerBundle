@@ -10,14 +10,14 @@ class EnvironmentProcessor implements ProcessorInterface
 	/** {@inheritdoc} */
 	public function process(Metadata $metadata, \Exception $exception = null)
 	{
-		$metadata->setTag('php_version', phpversion());
-		$metadata->setMetadatum('php_version', phpversion());
+		$metadata->addTag('php_version', phpversion());
+		$metadata->addMetadatum('php_version', phpversion());
 
-		$metadata->setTag('php_sapi_name', php_sapi_name());
-		$metadata->setMetadatum('php_sapi_name', php_sapi_name());
+		$metadata->addTag('php_sapi_name', php_sapi_name());
+		$metadata->addMetadatum('php_sapi_name', php_sapi_name());
 
-		$metadata->setTag('hostname', gethostname());
-		$metadata->setMetadatum('hostname', gethostname());
+		$metadata->addTag('hostname', gethostname());
+		$metadata->addMetadatum('hostname', gethostname());
 	}
 
 }

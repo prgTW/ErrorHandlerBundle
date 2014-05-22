@@ -39,7 +39,7 @@ class ExceptionListener
 		}
 
 		$metadata = new Metadata();
-		$metadata->setMetadatum('culprit', $culprit);
+		$metadata->addMetadatum('culprit', $culprit);
 		$this->errorHandler->handleException($exception, $metadata);
 	}
 
@@ -51,9 +51,9 @@ class ExceptionListener
 		$exception = $event->getException();
 
 		$metadata = new Metadata();
-		$metadata->setMetadatum('commandName', $event->getInput()->getFirstArgument());
-		$metadata->setMetadatum('command', (string)$event->getInput());
-		$metadata->setMetadatum('exitCode', $event->getExitCode());
+		$metadata->addMetadatum('commandName', $event->getInput()->getFirstArgument());
+		$metadata->addMetadatum('command', (string)$event->getInput());
+		$metadata->addMetadatum('exitCode', $event->getExitCode());
 		$this->errorHandler->handleException($exception, $metadata);
 	}
 }
