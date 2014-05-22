@@ -44,7 +44,7 @@ class ProcessorsPassTest extends \PHPUnit_Framework_TestCase
 		{
 			return $call[0] = 'addProcessor';
 		});
-		$this->assertCount(2, $addProcessorCalls);
+		$this->assertCount(3, $addProcessorCalls);
 	}
 
 	/**

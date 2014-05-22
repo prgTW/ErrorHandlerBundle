@@ -8,7 +8,8 @@
 		<parameter key="error_handler.base_class">prgTW\ErrorHandler\ErrorHandler</parameter>
 		<parameter key="error_handler.class">prgTW\ErrorHandlerBundle\ErrorHandler</parameter>
 		<parameter key="error_handler.handler_bugsnag.class">prgTW\ErrorHandler\Handler\BugsnagHandler</parameter>
-		<parameter key="error_handler.basic_data_processor.class">prgTW\ErrorHandlerBundle\Processor\BasicDataProcessor</parameter>
+		<parameter key="error_handler.symfony_processor.class">prgTW\ErrorHandlerBundle\Processor\SymfonyProcessor</parameter>
+		<parameter key="error_handler.environment_processor.class">prgTW\ErrorHandlerBundle\Processor\EnvironmentProcessor</parameter>
 		<parameter key="error_handler.listener.exception.class">prgTW\ErrorHandlerBundle\EventListener\ExceptionListener</parameter>
 		<parameter key="error_handler.listener.shutdown.class">prgTW\ErrorHandlerBundle\EventListener\ShutdownListener</parameter>
 		<parameter key="error_handler.listener.terminate.class">prgTW\ErrorHandlerBundle\EventListener\TerminateListener</parameter>
@@ -23,6 +24,18 @@
 			<argument type="service" id="base_error_handler" />
 		</service>
 
+		<!-- processors -->
+		<service id="error_handler.processor.symfony" class="%error_handler.symfony_processor.class%" lazy="true">
+			<argument>%error_handler.stage%</argument>
+			<argument>%error_handler.root_dir%</argument>
+			<tag name="error_handler.processor" />
+		</service>
+
+		<service id="error_handler.processor.environment" class="%error_handler.environment_processor.class%" lazy="true">
+			<tag name="error_handler.processor" />
+		</service>
+
+		<!-- listeners -->
 		<service id="error_handler.listener.exception" class="%error_handler.listener.exception.class%" lazy="true">
 			<argument type="service" id="error_handler"/>
 			<tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"/>
@@ -35,12 +48,6 @@
 
 		<service id="error_handler.listener.terminate" class="%error_handler.listener.terminate.class%" lazy="true">
 			<tag name="kernel.event_listener" event="kernel.terminate" method="onKernelTerminate"/>
-		</service>
-
-		<service id="error_handler.processor.basic_data" class="%error_handler.basic_data_processor.class%" lazy="true">
-			<argument>%error_handler.stage%</argument>
-			<argument>%error_handler.root_dir%</argument>
-			<tag name="error_handler.processor" />
 		</service>
 	</services>
 </container>

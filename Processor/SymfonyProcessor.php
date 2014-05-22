@@ -6,7 +6,7 @@ use prgTW\ErrorHandler\Metadata\Metadata;
 use prgTW\ErrorHandler\Processor\ProcessorInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
-class BasicDataProcessor implements ProcessorInterface
+class SymfonyProcessor implements ProcessorInterface
 {
 	/** @var string */
 	protected $environment;
