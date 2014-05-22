@@ -50,10 +50,10 @@ class ExceptionListener
 	{
 		$exception = $event->getException();
 
-		$metadata = (new Metadata())
-			->setMetadatum('commandName', $event->getInput()->getFirstArgument())
-			->setMetadatum('command', (string)$event->getInput())
-			->setMetadatum('exitCode', $event->getExitCode());
+		$metadata = new Metadata();
+		$metadata->setMetadatum('commandName', $event->getInput()->getFirstArgument());
+		$metadata->setMetadatum('command', (string)$event->getInput());
+		$metadata->setMetadatum('exitCode', $event->getExitCode());
 		$this->errorHandler->handleException($exception, $metadata);
 	}
 }
