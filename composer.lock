@@ -270,16 +270,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "v2.4.1",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "ceb18cf9b0230f3ea208b6238130fd415abda0a7"
+                "reference": "5db6ab40e4c531f14dad4ca96a394dfce5d4255b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/ceb18cf9b0230f3ea208b6238130fd415abda0a7",
-                "reference": "ceb18cf9b0230f3ea208b6238130fd415abda0a7",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/5db6ab40e4c531f14dad4ca96a394dfce5d4255b",
+                "reference": "5db6ab40e4c531f14dad4ca96a394dfce5d4255b",
                 "shasum": ""
             },
             "require": {
@@ -289,6 +289,9 @@
                 "doctrine/inflector": "1.*",
                 "doctrine/lexer": "1.*",
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
             },
             "type": "library",
             "extra": {
@@ -341,7 +344,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-09-07 10:20:34"
+            "time": "2014-05-21 19:28:51"
         },
         {
             "name": "doctrine/inflector",
@@ -466,12 +469,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/prgTW/error-handler.git",
-                "reference": "fc25143780545d338357f56e662c146c7e3c93d9"
+                "reference": "2c95e00dbc7700bd3a16f640ff40ea72128bd3fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/fc25143780545d338357f56e662c146c7e3c93d9",
-                "reference": "fc25143780545d338357f56e662c146c7e3c93d9",
+                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/2c95e00dbc7700bd3a16f640ff40ea72128bd3fc",
+                "reference": "2c95e00dbc7700bd3a16f640ff40ea72128bd3fc",
                 "shasum": ""
             },
             "require": {
@@ -505,7 +508,7 @@
                 "handler",
                 "php"
             ],
-            "time": "2014-05-21 12:52:50"
+            "time": "2014-05-22 07:53:06"
         },
         {
             "name": "psr/log",

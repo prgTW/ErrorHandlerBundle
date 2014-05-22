@@ -32,5 +32,4 @@ class BasicDataProcessor implements ProcessorInterface
 		$metadata->setMetadatum('symfony_version', Kernel::VERSION);
 		$metadata->setAppRootDir($this->kernelRootDir);
 	}
-
 }

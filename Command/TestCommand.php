@@ -35,25 +35,22 @@ class TestCommand extends ContainerAwareCommand
 		$digits = floor(log10($count) + 1);
 		/** @var ErrorHandler $errorHandler */
 		$errorHandler = $this->getContainer()->get('error_handler');
+		$categories   = $input->getArgument('category');
 
-		$output->writeln('<fg=cyan>Creating errors:</fg=cyan>');
-		foreach ($input->getArgument('category') as $category)
+		$output->writeln('<fg=cyan>Creating errors</fg=cyan>');
+		for ($i = 1; $i <= $count; ++$i)
 		{
-			$output->writeln(sprintf('- <comment>%s</comment>', $category));
-			for ($i = 1; $i <= $count; ++$i)
+			switch ($type)
 			{
-				switch ($type)
-				{
-					case 'error':
-						$errorHandler->handleError(E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__, array(), (new Metadata())->setCategories(array($category)));
-						break;
+				case 'error':
+					$errorHandler->handleError(E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__, array(), (new Metadata())->setCategories($categories));
+					break;
 
-					case 'exception':
-						$errorHandler->handleException(new \Exception(), (new Metadata())->setCategories(array($category)));
-						break;
-				}
-				$output->writeln(sprintf("  - <comment>[%{$digits}d/%{$digits}d]</comment> <info>OK</info>", $i, $count));
+				case 'exception':
+					$errorHandler->handleException(new \Exception(), (new Metadata())->setCategories($categories));
+					break;
 			}
+			$output->writeln(sprintf("<comment>[%{$digits}d/%{$digits}d]</comment> <info>OK</info>", $i, $count));
 		}
 
 		$output->writeln('<info>DONE</info>');
