@@ -469,12 +469,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/prgTW/error-handler.git",
-                "reference": "dd11655c37a8a0ff17f6115ec00c469af8358f2e"
+                "reference": "206485fe7473b2dbdb5e69391952503a39c9964d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/dd11655c37a8a0ff17f6115ec00c469af8358f2e",
-                "reference": "dd11655c37a8a0ff17f6115ec00c469af8358f2e",
+                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/206485fe7473b2dbdb5e69391952503a39c9964d",
+                "reference": "206485fe7473b2dbdb5e69391952503a39c9964d",
                 "shasum": ""
             },
             "require": {
@@ -508,7 +508,7 @@
                 "handler",
                 "php"
             ],
-            "time": "2014-05-22 16:04:07"
+            "time": "2014-05-23 07:10:21"
         },
         {
             "name": "psr/log",
@@ -598,16 +598,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.4.4",
+            "version": "v2.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "4697c33cdfb520dcf83fd6e4f7864fa26ddaebea"
+                "reference": "885b6d17447fcc3cd9c42622321e5af4283dbde1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/4697c33cdfb520dcf83fd6e4f7864fa26ddaebea",
-                "reference": "4697c33cdfb520dcf83fd6e4f7864fa26ddaebea",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/885b6d17447fcc3cd9c42622321e5af4283dbde1",
+                "reference": "885b6d17447fcc3cd9c42622321e5af4283dbde1",
                 "shasum": ""
             },
             "require": {
@@ -709,7 +709,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-04-27 13:39:18"
+            "time": "2014-05-22 21:04:05"
         },
         {
             "name": "twig/twig",
