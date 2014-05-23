@@ -24,6 +24,11 @@ class ErrorHandler implements HandlerInterface
 	/** {@inheritdoc} */
 	public function handleError(ErrorException $error, Metadata $metadata = null)
 	{
+		if (array() === $metadata->getCategories())
+		{
+			$metadata->addCategory('default');
+		}
+
 		$this->errorHandler->handleError(
 			$error->getCode(),
 			$error->getMessage(),
@@ -37,12 +42,20 @@ class ErrorHandler implements HandlerInterface
 	/** {@inheritdoc} */
 	public function handleException(\Exception $exception, Metadata $metadata = null)
 	{
+		if (array() === $metadata->getCategories())
+		{
+			$metadata->addCategory('default');
+		}
 		$this->errorHandler->handleException($exception, $metadata);
 	}
 
 	/** {@inheritdoc} */
 	public function handleEvent($event, Metadata $metadata = null)
 	{
+		if (array() === $metadata->getCategories())
+		{
+			$metadata->addCategory('default');
+		}
 		$this->errorHandler->handleEvent($event, $metadata);
 	}
 
@@ -52,6 +65,7 @@ class ErrorHandler implements HandlerInterface
 	 */
 	public function addHandler(HandlerInterface $handler, array $categories = array())
 	{
+		$categories = array() !== $categories ? $categories : array('default');
 		$this->errorHandler->getHandlerManager()->attach($handler, $categories);
 	}
 
