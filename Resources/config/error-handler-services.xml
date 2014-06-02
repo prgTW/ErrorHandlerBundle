@@ -8,6 +8,7 @@
 		<parameter key="error_handler.base_class">prgTW\ErrorHandler\ErrorHandler</parameter>
 		<parameter key="error_handler.class">prgTW\ErrorHandlerBundle\ErrorHandler</parameter>
 		<parameter key="error_handler.handler_bugsnag.class">prgTW\ErrorHandler\Handler\BugsnagHandler</parameter>
+		<parameter key="error_handler.handler_raven.class">prgTW\ErrorHandler\Handler\RavenHandler</parameter>
 		<parameter key="error_handler.symfony_processor.class">prgTW\ErrorHandlerBundle\Processor\SymfonyProcessor</parameter>
 		<parameter key="error_handler.environment_processor.class">prgTW\ErrorHandlerBundle\Processor\EnvironmentProcessor</parameter>
 		<parameter key="error_handler.exception_listener.class">prgTW\ErrorHandlerBundle\Listener\ExceptionListener</parameter>

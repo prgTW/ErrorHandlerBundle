@@ -20,8 +20,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 	public function testListeners()
 	{
 		$this->extension->load(array(
-			'error_handler' => array(
-			),
+			'error_handler' => array(),
 		), $this->container);
 
 		$this->assertTrue($this->container->hasDefinition('error_handler.listener.exception'));
@@ -50,31 +49,88 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 		), $this->container);
 	}
 
-	public function testHandlersConnected()
+	/**
+	 * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+	 * @dataProvider provideInvalidHandlersConfigurations
+	 */
+	public function testInvalidConfigurations($handlers)
 	{
 		$this->extension->load(array(
 			'error_handler' => array(
 				'categories' => array(
 					'default' => array(
-						'handlers' => array(
-							'bugsnag' => array(
-								'apiKey' => 'example',
-								'endpoint' => 'endpoint',
-								'useSSL' => false,
-							),
-						),
+						'handlers' => $handlers,
+					),
+				),
+			),
+		), $this->container);
+	}
+
+	public function provideInvalidHandlersConfigurations()
+	{
+		return array(
+			array(false),
+			array(true),
+			array(null),
+			array(array()),
+			array(
+				array(
+					'bugsnag' => array()
+				)
+			),
+			array(
+				array(
+					'raven' => array()
+				)
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideValidHandlersConfiguration
+	 */
+	public function testHandlersConnected(array $handlers)
+	{
+		$this->extension->load(array(
+			'error_handler' => array(
+				'categories' => array(
+					'default' => array(
+						'handlers' => $handlers
 					),
 				),
 			),
 		), $this->container);
 
-		$serviceId = 'error_handler.handler.default.bugsnag';
-		$this->assertTrue($this->container->hasDefinition($serviceId));
-		$def = $this->container->getDefinition($serviceId);
-		$this->assertFalse($def->isPublic());
-		$this->assertTrue($def->isLazy());
-		$this->assertEquals('example', $def->getArgument(0));
-		$this->assertCount(2, $def->getMethodCalls());
+		foreach ($handlers as $handlerName => $handler)
+		{
+			$serviceId = 'error_handler.handler.default.' . $handlerName;
+			$this->assertTrue($this->container->hasDefinition($serviceId));
+			$def = $this->container->getDefinition($serviceId);
+			$this->assertFalse($def->isPublic());
+			$this->assertTrue($def->isLazy());
+		}
+	}
+
+	public function provideValidHandlersConfiguration()
+	{
+		return array(
+			array(
+				array(
+					'bugsnag' => array(
+						'apiKey'   => 'example',
+						'endpoint' => 'endpoint',
+						'useSSL'   => false,
+					),
+				),
+			),
+			array(
+				array(
+					'raven' => array(
+						'endpoint' => 'endpoint',
+					),
+				),
+			),
+		);
 	}
 
 	protected function setUp()

@@ -60,6 +60,10 @@ class ErrorHandlerExtension extends Extension
 							));
 						}
 						break;
+
+					case 'raven':
+						$handlerDefinition->addArgument($handlerConfiguration['endpoint']);
+						break;
 				}
 				$container->setDefinition($handlerId, $handlerDefinition);
 				$errorHandler->addMethodCall('addHandler', array(

@@ -54,22 +54,37 @@ class Configuration implements ConfigurationInterface
 	protected function getHandlerNodes()
 	{
 		$treeBuilder = new TreeBuilder();
-		$root = $treeBuilder->root('handlers');
+		$root        = $treeBuilder->root('handlers');
+		$root->treatFalseLike(array());
+		$root->treatTrueLike(array());
+		$root->treatNullLike(array());
+		$root->validate()->ifTrue(function ($val) {
+			return !is_array($val) || !count($val);
+		})->thenInvalid('Define at least 1 handler');
 
 		$this->appendBugsnagConfiguration($root);
+		$this->appendRavenConfiguration($root);
 
 		return $root;
 	}
 
 	/**
-	 * @param ArrayNodeDefinition $node
+	 * @param ArrayNodeDefinition $root
 	 */
-	protected function appendBugsnagConfiguration(ArrayNodeDefinition $node)
+	protected function appendBugsnagConfiguration(ArrayNodeDefinition $root)
 	{
-		$bugsnag =  $node->children()->arrayNode('bugsnag');
-		$bugsnag->isRequired();
-		$bugsnag->children()->scalarNode('apiKey')->isRequired()->info('Project API key');
-		$bugsnag->children()->scalarNode('endpoint')->defaultNull()->info('Endpoint URI');
-		$bugsnag->children()->booleanNode('useSSL')->defaultNull()->info('Whether to use SSL');
+		$node =  $root->children()->arrayNode('bugsnag');
+		$node->children()->scalarNode('apiKey')->isRequired()->info('Project API key');
+		$node->children()->scalarNode('endpoint')->defaultNull()->info('Endpoint URI');
+		$node->children()->booleanNode('useSSL')->defaultNull()->info('Whether to use SSL');
+	}
+
+	/**
+	 * @param ArrayNodeDefinition $root
+	 */
+	protected function appendRavenConfiguration(ArrayNodeDefinition $root)
+	{
+		$node =  $root->children()->arrayNode('raven');
+		$node->children()->scalarNode('endpoint')->isRequired()->defaultNull()->info('Endpoint URI');
 	}
 }

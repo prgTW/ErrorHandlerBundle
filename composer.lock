@@ -7,16 +7,16 @@
     "packages": [
         {
             "name": "bugsnag/bugsnag",
-            "version": "v2.2.7",
+            "version": "v2.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bugsnag/bugsnag-php.git",
-                "reference": "3e44c354c7b86513001da5a34830e81b8d135434"
+                "reference": "a38df53d81658d9408221d021ef16dfa53151df7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/3e44c354c7b86513001da5a34830e81b8d135434",
-                "reference": "3e44c354c7b86513001da5a34830e81b8d135434",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/a38df53d81658d9408221d021ef16dfa53151df7",
+                "reference": "a38df53d81658d9408221d021ef16dfa53151df7",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 "logging",
                 "tracking"
             ],
-            "time": "2014-05-20 01:07:47"
+            "time": "2014-05-26 00:39:02"
         },
         {
             "name": "doctrine/annotations",
@@ -469,17 +469,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/prgTW/error-handler.git",
-                "reference": "206485fe7473b2dbdb5e69391952503a39c9964d"
+                "reference": "eef5d46e543927d7420aca41caba71a294fe478b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/206485fe7473b2dbdb5e69391952503a39c9964d",
-                "reference": "206485fe7473b2dbdb5e69391952503a39c9964d",
+                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/eef5d46e543927d7420aca41caba71a294fe478b",
+                "reference": "eef5d46e543927d7420aca41caba71a294fe478b",
                 "shasum": ""
             },
             "require": {
                 "bugsnag/bugsnag": "~2.0",
-                "php": ">=5.3.3"
+                "php": ">=5.3.3",
+                "raven/raven": "~0.8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -508,7 +509,7 @@
                 "handler",
                 "php"
             ],
-            "time": "2014-05-23 07:10:21"
+            "time": "2014-06-02 07:27:12"
         },
         {
             "name": "psr/log",
@@ -547,6 +548,58 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "raven/raven",
+            "version": "0.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getsentry/raven-php.git",
+                "reference": "d4b741736125f2b892e07903cd40450b53479290"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getsentry/raven-php/zipball/d4b741736125f2b892e07903cd40450b53479290",
+                "reference": "d4b741736125f2b892e07903cd40450b53479290",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "bin": [
+                "bin/raven"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Raven_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "David Cramer",
+                    "email": "dcramer@gmail.com"
+                }
+            ],
+            "description": "A PHP client for Sentry (http://getsentry.com)",
+            "homepage": "http://getsentry.com",
+            "keywords": [
+                "log",
+                "logging"
+            ],
+            "time": "2013-12-03 10:27:59"
         },
         {
             "name": "symfony/icu",
@@ -598,16 +651,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.4.5",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "885b6d17447fcc3cd9c42622321e5af4283dbde1"
+                "reference": "59365832a09a1d914d14cbca6a21a7f572760c3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/885b6d17447fcc3cd9c42622321e5af4283dbde1",
-                "reference": "885b6d17447fcc3cd9c42622321e5af4283dbde1",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/59365832a09a1d914d14cbca6a21a7f572760c3b",
+                "reference": "59365832a09a1d914d14cbca6a21a7f572760c3b",
                 "shasum": ""
             },
             "require": {
@@ -665,6 +718,7 @@
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.2",
                 "doctrine/orm": "~2.2,>=2.2.3",
+                "egulias/email-validator": "1.1.0",
                 "ircmaxell/password-compat": "1.0.*",
                 "monolog/monolog": "~1.3",
                 "ocramius/proxy-manager": ">=0.3.1,<0.6-dev",
@@ -673,7 +727,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -709,7 +763,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-05-22 21:04:05"
+            "time": "2014-05-31 18:45:50"
         },
         {
             "name": "twig/twig",
@@ -772,16 +826,16 @@
     "packages-dev": [
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.6",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "bccecf50645068b44f49a84009e2a0499a500b99"
+                "reference": "58401826c8cfc8fd689b60026e91c337df374bca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/bccecf50645068b44f49a84009e2a0499a500b99",
-                "reference": "bccecf50645068b44f49a84009e2a0499a500b99",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/58401826c8cfc8fd689b60026e91c337df374bca",
+                "reference": "58401826c8cfc8fd689b60026e91c337df374bca",
                 "shasum": ""
             },
             "require": {
@@ -833,7 +887,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-04-30 09:01:21"
+            "time": "2014-05-26 14:55:24"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1020,16 +1074,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.1.0",
+            "version": "4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "efb1b1334605594417a3bd466477772d06d460a8"
+                "reference": "1d6b554732382879045e11c56decd4be76130720"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/efb1b1334605594417a3bd466477772d06d460a8",
-                "reference": "efb1b1334605594417a3bd466477772d06d460a8",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1d6b554732382879045e11c56decd4be76130720",
+                "reference": "1d6b554732382879045e11c56decd4be76130720",
                 "shasum": ""
             },
             "require": {
@@ -1090,7 +1144,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-05-02 07:13:40"
+            "time": "2014-05-24 10:48:51"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
