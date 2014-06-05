@@ -2,6 +2,7 @@
 
 namespace prgTW\ErrorHandlerBundle\DependencyInjection;
 
+use prgTW\ErrorHandler\Error\Severity;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
@@ -26,6 +27,12 @@ class ErrorHandlerExtension extends Extension
 
 		$container->setParameter('error_handler.stage', $config['stage']);
 		$container->setParameter('error_handler.root_dir', $config['root_dir']);
+
+		$shutdownSeverity = strtoupper($config['shutdown_severity']);
+		$container->setParameter('error_handler.shutdown_severity', $shutdownSeverity);
+
+		$baseErrorHandler = $container->getDefinition('base_error_handler');
+		$baseErrorHandler->replaceArgument(0, Severity::$SEVERITIES[$shutdownSeverity]);
 
 		$errorHandler = $container->getDefinition('error_handler');
 

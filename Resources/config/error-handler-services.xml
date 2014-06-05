@@ -17,7 +17,9 @@
 	<services>
 		<service id="error_handler.abstract.handler" abstract="true" />
 
-		<service id="base_error_handler" class="%error_handler.base_class%" public="false" lazy="true" />
+		<service id="base_error_handler" class="%error_handler.base_class%" public="false" lazy="true">
+			<argument /> <!-- severity -->
+		</service>
 
 		<service id="error_handler" class="%error_handler.class%" lazy="false">
 			<argument type="service" id="base_error_handler" />

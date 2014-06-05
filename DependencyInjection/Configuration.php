@@ -2,6 +2,7 @@
 
 namespace prgTW\ErrorHandlerBundle\DependencyInjection;
 
+use prgTW\ErrorHandler\Error\Severity;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -29,6 +30,22 @@ class Configuration implements ConfigurationInterface
 
 				->scalarNode('root_dir')
 					->defaultValue('%kernel.root_dir%')
+				->end()
+
+				->scalarNode('shutdown_severity')
+					->validate()
+						->ifTrue(function($val) {
+							if (!is_string($val))
+							{
+								return true;
+							}
+							$val = strtoupper($val);
+							$severities = array_keys(Severity::$SEVERITIES);
+							return !in_array($val, $severities);
+						})
+						->thenInvalid(sprintf('Severity must be one of the following: %s', implode(',', array_keys(Severity::$SEVERITIES))))
+					->end()
+					->defaultValue('ERROR')
 				->end()
 
 				->arrayNode('categories')

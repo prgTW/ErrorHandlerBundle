@@ -2,6 +2,7 @@
 
 namespace prgTW\ErrorHandlerBundle\Tests\DependencyInjection;
 
+use prgTW\ErrorHandler\Error\Severity;
 use prgTW\ErrorHandlerBundle\DependencyInjection\ErrorHandlerExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -51,9 +52,66 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+	 */
+	public function testInvalidSeverityConfigurations()
+	{
+		$this->extension->load(array(
+			'error_handler' => array(
+				'shutdown_severity' => 'unknown',
+				'categories' => array(
+					'default' => array(),
+				),
+			),
+		), $this->container);
+	}
+
+	/**
+	 * @dataProvider provideValidSeverityConfigurations
+	 */
+	public function testValidSeverityConfigurations($severity)
+	{
+		$this->extension->load(array(
+			'error_handler' => array(
+				'shutdown_severity' => $severity,
+				'categories' => array(
+					'default' => array(),
+				),
+			),
+		), $this->container);
+
+		$shutdownSeverity = strtoupper($severity);
+		$this->assertEquals($shutdownSeverity, $this->container->getParameter('error_handler.shutdown_severity'));
+		$baseErrorHandler = $this->container->getDefinition('base_error_handler');
+		$this->assertEquals(Severity::$SEVERITIES[$shutdownSeverity], $baseErrorHandler->getArgument(0));
+	}
+
+	public function provideValidSeverityConfigurations()
+	{
+		return array(
+			array('debug'),
+			array('DEBUG'),
+			array('info'),
+			array('INFO'),
+			array('notice'),
+			array('NOTICE'),
+			array('warning'),
+			array('WARNING'),
+			array('error'),
+			array('ERROR'),
+			array('critical'),
+			array('CRITICAL'),
+			array('alert'),
+			array('ALERT'),
+			array('emergency'),
+			array('EMERGENCY'),
+		);
+	}
+
+	/**
+	 * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
 	 * @dataProvider provideInvalidHandlersConfigurations
 	 */
-	public function testInvalidConfigurations($handlers)
+	public function testInvalidHandlersConfigurations($handlers)
 	{
 		$this->extension->load(array(
 			'error_handler' => array(
@@ -72,6 +130,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 			array(false),
 			array(true),
 			array(null),
+			array(array()),
 			array(array()),
 			array(
 				array(
