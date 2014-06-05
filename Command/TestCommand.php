@@ -2,7 +2,8 @@
 
 namespace prgTW\ErrorHandlerBundle\Command;
 
-use prgTW\ErrorHandler\ErrorHandler;
+use prgTW\ErrorHandler\Error\ErrorException;
+use prgTW\ErrorHandlerBundle\ErrorHandler;
 use prgTW\ErrorHandler\Metadata\Metadata;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Command\Command;
@@ -45,7 +46,8 @@ class TestCommand extends ContainerAwareCommand
 			switch ($type)
 			{
 				case 'error':
-					$errorHandler->handleError(E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__, array(), $metadata);
+					$error = ErrorException::fromPhpError(E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__, array());
+					$errorHandler->handleError($error, $metadata);
 					break;
 
 				case 'exception':
