@@ -7,16 +7,16 @@
     "packages": [
         {
             "name": "bugsnag/bugsnag",
-            "version": "v2.2.8",
+            "version": "v2.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bugsnag/bugsnag-php.git",
-                "reference": "a38df53d81658d9408221d021ef16dfa53151df7"
+                "reference": "a8227e0ea501b30befd5f3df9e1bf4ca35b2ae8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/a38df53d81658d9408221d021ef16dfa53151df7",
-                "reference": "a38df53d81658d9408221d021ef16dfa53151df7",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/a8227e0ea501b30befd5f3df9e1bf4ca35b2ae8a",
+                "reference": "a8227e0ea501b30befd5f3df9e1bf4ca35b2ae8a",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 "logging",
                 "tracking"
             ],
-            "time": "2014-05-26 00:39:02"
+            "time": "2014-06-02 20:49:09"
         },
         {
             "name": "doctrine/annotations",
