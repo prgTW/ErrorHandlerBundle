@@ -3,6 +3,7 @@
 namespace prgTW\ErrorHandlerBundle;
 
 use prgTW\ErrorHandler\Error\ErrorException;
+use prgTW\ErrorHandler\Error\Severity;
 use prgTW\ErrorHandler\Handler\HandlerInterface;
 use prgTW\ErrorHandler\Metadata\Metadata;
 use prgTW\ErrorHandler\Processor\ProcessorInterface;
@@ -18,17 +19,13 @@ class ErrorHandler implements HandlerInterface
 	public function __construct(\prgTW\ErrorHandler\ErrorHandler $errorHandler)
 	{
 		$this->errorHandler = $errorHandler;
-		$this->errorHandler->register(false, false, true);
+		register_shutdown_function(array($this, 'handleShutdown'));
 	}
 
 	/** {@inheritdoc} */
 	public function handleError(ErrorException $error, Metadata $metadata = null)
 	{
-		if (array() === $metadata->getCategories())
-		{
-			$metadata->addCategory('default');
-		}
-
+		$this->addDefaultCategory($metadata);
 		$this->errorHandler->handleError(
 			$error->getCode(),
 			$error->getMessage(),
@@ -42,21 +39,31 @@ class ErrorHandler implements HandlerInterface
 	/** {@inheritdoc} */
 	public function handleException(\Exception $exception, Metadata $metadata = null)
 	{
-		if (array() === $metadata->getCategories())
-		{
-			$metadata->addCategory('default');
-		}
+		$this->addDefaultCategory($metadata);
 		$this->errorHandler->handleException($exception, $metadata);
 	}
 
 	/** {@inheritdoc} */
 	public function handleEvent($event, Metadata $metadata = null)
 	{
-		if (array() === $metadata->getCategories())
-		{
-			$metadata->addCategory('default');
-		}
+		$this->addDefaultCategory($metadata);
 		$this->errorHandler->handleEvent($event, $metadata);
+	}
+
+	/**
+	 * Handle fatal errors and such
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function handleShutdown()
+	{
+		$error = error_get_last();
+		if ($error && Severity::fromPhpErrorNo($error['type']) >= $this->errorHandler->getMinSeverityOnShutdown())
+		{
+			$error    = ErrorException::fromPhpError($error['type'], $error['message'], $error['file'], $error['line']);
+			$metadata = (new Metadata())->addCategory('default');
+			$this->handleError($error, $metadata);
+		}
 	}
 
 	/**
@@ -75,6 +82,17 @@ class ErrorHandler implements HandlerInterface
 	public function addProcessor(ProcessorInterface $processor)
 	{
 		$this->errorHandler->getProcessorManager()->attach($processor);
+	}
+
+	/**
+	 * @param Metadata $metadata
+	 */
+	protected function addDefaultCategory(Metadata $metadata)
+	{
+		if (array() === $metadata->getCategories())
+		{
+			$metadata->addCategory('default');
+		}
 	}
 
 }

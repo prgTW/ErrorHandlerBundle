@@ -75,7 +75,7 @@ class ErrorHandlerExtension extends Extension
 				$container->setDefinition($handlerId, $handlerDefinition);
 				$errorHandler->addMethodCall('addHandler', array(
 					new Reference($handlerId),
-					$categoryName == 'default' ? array() : array($categoryName)
+					array($categoryName),
 				));
 			}
 		}
