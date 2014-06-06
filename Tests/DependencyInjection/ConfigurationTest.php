@@ -160,7 +160,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 			),
 		), $this->container);
 
-		foreach ($handlers as $handlerName => $handler)
+		foreach (array_keys($handlers) as $handlerName)
 		{
 			$serviceId = 'error_handler.handler.default.' . $handlerName;
 			$this->assertTrue($this->container->hasDefinition($serviceId));

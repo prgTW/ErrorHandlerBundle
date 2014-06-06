@@ -21,7 +21,7 @@ class ProcessorsPass implements CompilerPassInterface
 		$errorHandler   = $container->getDefinition('error_handler');
 		$taggedServices = $container->findTaggedServiceIds('error_handler.processor');
 
-		foreach ($taggedServices as $serviceId => $attributes)
+		foreach (array_keys($taggedServices) as $serviceId)
 		{
 			$processorService = $container->getDefinition($serviceId);
 			$class            = $container->getParameterBag()->resolveValue($processorService->getClass());
