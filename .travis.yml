@@ -35,3 +35,4 @@ after_script:
 cache:
   directories:
     - $COMPOSER_CACHE_DIR
+    - vendor
