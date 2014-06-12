@@ -469,12 +469,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/prgTW/error-handler.git",
-                "reference": "8f7fdb4571e4240c426bd47c9ac966402bab0c54"
+                "reference": "7ae901927c8dbfcc487dd83cd4494a5cb69a91f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/8f7fdb4571e4240c426bd47c9ac966402bab0c54",
-                "reference": "8f7fdb4571e4240c426bd47c9ac966402bab0c54",
+                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/7ae901927c8dbfcc487dd83cd4494a5cb69a91f6",
+                "reference": "7ae901927c8dbfcc487dd83cd4494a5cb69a91f6",
                 "shasum": ""
             },
             "require": {
@@ -509,7 +509,7 @@
                 "handler",
                 "php"
             ],
-            "time": "2014-06-10 20:23:39"
+            "time": "2014-06-12 07:51:53"
         },
         {
             "name": "psr/log",
