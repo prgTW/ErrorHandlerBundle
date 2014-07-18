@@ -46,7 +46,7 @@ class TestCommand extends ContainerAwareCommand
 			switch ($type)
 			{
 				case 'error':
-					$error = ErrorException::fromPhpError(E_USER_ERROR, 'TEST ERROR', __FILE__, __LINE__, array());
+					$error = new ErrorException('TEST ERROR', E_USER_ERROR, __FILE__, __LINE__);
 					$errorHandler->handleError($error, $metadata);
 					break;
 

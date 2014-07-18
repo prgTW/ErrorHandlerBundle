@@ -60,7 +60,7 @@ class ErrorHandler implements HandlerInterface
 		$error = error_get_last();
 		if ($error && Severity::fromPhpErrorNo($error['type']) >= $this->errorHandler->getMinSeverityOnShutdown())
 		{
-			$error = ErrorException::fromPhpError($error['type'], $error['message'], $error['file'], $error['line']);
+			$error = new ErrorException($error['message'], $error['type'], $error['file'], $error['line']);
 			$this->handleError($error);
 		}
 	}
