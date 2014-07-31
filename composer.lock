@@ -470,18 +470,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/prgTW/error-handler.git",
-                "reference": "506aacd67bcb20cb7ba4ba63f9ee38e0341db489"
+                "reference": "8554a1b02c1e3710ee1c6228ada289e69821b3e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/506aacd67bcb20cb7ba4ba63f9ee38e0341db489",
-                "reference": "506aacd67bcb20cb7ba4ba63f9ee38e0341db489",
+                "url": "https://api.github.com/repos/prgTW/error-handler/zipball/8554a1b02c1e3710ee1c6228ada289e69821b3e2",
+                "reference": "8554a1b02c1e3710ee1c6228ada289e69821b3e2",
                 "shasum": ""
             },
             "require": {
                 "bugsnag/bugsnag": "~2.0",
                 "php": ">=5.3.3",
-                "raven/raven": "~0.8.0"
+                "raven/raven": "~0.9.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -510,7 +510,7 @@
                 "handler",
                 "php"
             ],
-            "time": "2014-07-21 10:12:21"
+            "time": "2014-07-31 09:46:56"
         },
         {
             "name": "psr/log",
@@ -552,16 +552,16 @@
         },
         {
             "name": "raven/raven",
-            "version": "0.8.0",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/raven-php.git",
-                "reference": "d4b741736125f2b892e07903cd40450b53479290"
+                "reference": "1177f1c51110454f3a5bcca88aec3fa30e40e277"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/raven-php/zipball/d4b741736125f2b892e07903cd40450b53479290",
-                "reference": "d4b741736125f2b892e07903cd40450b53479290",
+                "url": "https://api.github.com/repos/getsentry/raven-php/zipball/1177f1c51110454f3a5bcca88aec3fa30e40e277",
+                "reference": "1177f1c51110454f3a5bcca88aec3fa30e40e277",
                 "shasum": ""
             },
             "require": {
@@ -576,7 +576,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.7.x-dev"
+                    "dev-master": "0.8.x-dev"
                 }
             },
             "autoload": {
@@ -600,24 +600,25 @@
                 "log",
                 "logging"
             ],
-            "time": "2013-12-03 10:27:59"
+            "time": "2014-06-04 05:46:21"
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "98e197da54df1f966dd5e8a4992135703569c987"
+                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/98e197da54df1f966dd5e8a4992135703569c987",
-                "reference": "98e197da54df1f966dd5e8a4992135703569c987",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
+                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
                 "shasum": ""
             },
             "require": {
+                "ext-intl": "*",
                 "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
@@ -648,7 +649,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-10-04 10:06:38"
+            "time": "2014-07-25 09:58:17"
         },
         {
             "name": "symfony/symfony",
