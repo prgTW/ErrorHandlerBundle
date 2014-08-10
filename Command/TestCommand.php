@@ -6,7 +6,6 @@ use prgTW\ErrorHandler\Error\ErrorException;
 use prgTW\ErrorHandlerBundle\ErrorHandler;
 use prgTW\ErrorHandler\Metadata\Metadata;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
