@@ -21,7 +21,7 @@
 			<argument /> <!-- severity -->
 		</service>
 
-		<service id="error_handler" class="%error_handler.class%" lazy="false">
+		<service id="error_handler" class="%error_handler.class%">
 			<argument type="service" id="base_error_handler" />
 		</service>
 
